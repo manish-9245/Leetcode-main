@@ -4,20 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        def gcd(a, b):
- 
-        # Everything divides 0
-            if (a == 0):
-                return b
-            if (b == 0):
-                return a
- 
-            # Base case
-            if (a == b):
-                return a
- 
-        # a is greater
-            if (a > b):
-                return gcd(a-b, b)
-            return gcd(a, b-a)
-        return gcd(max(nums),min(nums))
+        minn, maxx = min(nums), max(nums)
+
+        for num in range(minn+1, 0, -1):
+            if maxx % num == 0 and minn % num == 0:
+                return num
+
+        return 1
