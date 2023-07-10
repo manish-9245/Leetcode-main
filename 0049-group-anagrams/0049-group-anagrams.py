@@ -4,10 +4,14 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        anagram_map = defaultdict(list)
-        
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101]
+        anagrams = {}
         for word in strs:
-            sorted_word = ''.join(sorted(word))
-            anagram_map[sorted_word].append(word)
-        
-        return list(anagram_map.values())
+            key = 1
+            for char in word:
+                key *= primes[ord(char) - ord('a')]
+            if key in anagrams:
+                anagrams[key].append(word)
+            else:
+                anagrams[key] = [word]
+        return list(anagrams.values())
