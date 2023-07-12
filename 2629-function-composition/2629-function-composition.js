@@ -3,15 +3,17 @@
  * @return {Function}
  */
 var compose = function(functions) {
-	if (functions.length === 0) {
-    return function(x) { return x; };
-  }
-  return functions.reduceRight(function(prevFn, nextFn) {
-    return function(x) {
-      return nextFn(prevFn(x));
-    };
-  });
+  return function(x) {
+    if (functions.length === 0) {
+      return x; // Identity function when no functions are provided
+    }
 
+    let result = x;
+    for (let i = functions.length - 1; i >= 0; i--) {
+      result = functions[i](result);
+    }
+    return result;
+  };
 };
 
 /**
