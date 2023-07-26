@@ -19,7 +19,7 @@ class Solution(object):
         k %= length
 
     # Find the new tail node after rotation
-        for _ in range(length - k - 1):
+        for i in range(length - k - 1):
             head = head.next
 
         new_head = head.next
