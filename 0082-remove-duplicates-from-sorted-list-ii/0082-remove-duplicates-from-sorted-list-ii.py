@@ -11,22 +11,13 @@ class Solution(object):
         """
         dummy = ListNode(-1)
         dummy.next = head
-        prev = dummy
-        current = head
-
+        prev, current = dummy, head
         while current:
-        # Check if the current node has duplicates
             if current.next and current.val == current.next.val:
-            # Skip all the duplicates
                 while current.next and current.val == current.next.val:
                     current = current.next
-            # Move to the next distinct node
-                current = current.next
-            # Update the prev node to skip the duplicates
-                prev.next = current
+                prev.next = current.next
             else:
-            # Move both pointers to the next nodes
                 prev = prev.next
-                current = current.next
-
+            current = current.next
         return dummy.next
